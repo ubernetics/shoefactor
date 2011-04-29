@@ -94,9 +94,18 @@ When /^(?:|I )uncheck "([^"]*)"$/ do |field|
   uncheck(field)
 end
 
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field|
+  field_labeled(field).element.search(".//option[@selected = 'selected']").inner_html.should =~ /#{value}/
+end
+
 When /^(?:|I )choose "([^"]*)"$/ do |field|
   choose(field)
 end
+
+Then /^the "([^"]*)" drop-down should contain the option "([^"]*)"$/ do |id, value|
+  page.should.have_xpath "//select[@id = '#{id}']/option[@value = '#{value}']"
+end
+
 
 When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))

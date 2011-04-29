@@ -1,0 +1,34 @@
+
+<%= javascript_include_tag :defaults %>
+
+<%= form_for(@material) do |f| %>
+  <% if @material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+      <% @material.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :material_type %><br />
+  	<%= f.collection_select(:material_type, Materialtype.all, :id, :name)%>
+    <%= link_to 'Add New Material Type', materials_path %></td>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
