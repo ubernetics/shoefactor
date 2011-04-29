@@ -10,12 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427191703) do
+ActiveRecord::Schema.define(:version => 20110414183724) do
 
-  create_table "materials", :force => true do |t|
-    t.string   "Name"
-    t.string   "Description"
-    t.string   "Type"
+  create_table "articles", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
