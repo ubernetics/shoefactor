@@ -97,7 +97,9 @@ end
 Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field|
   field_labeled(field).element.search(".//option[@selected = 'selected']").inner_html.should =~ /#{value}/
 end
-
+And /^"([^\"]*)" should be selected for "([^\"]*)"$/ do |selected_value, field|
+find_by_id(field).value.to_s.should == selected_value
+end
 When /^(?:|I )choose "([^"]*)"$/ do |field|
   choose(field)
 end
@@ -118,6 +120,16 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
     assert page.has_content?(text)
   end
 end
+
+Given /^there are types in material_types$/ do
+  @generated_type = Materialtype.create!(
+    :name => 'suela',
+    :description => 'suelas para el zapato',
+  )
+  @generated_type.save
+end
+
+
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
