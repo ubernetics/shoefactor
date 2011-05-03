@@ -129,6 +129,24 @@ Given /^there are types in material_types$/ do
   @generated_type.save
 end
 
+Given /^there are no types in material_types$/ do
+  @types = Materialtype.all
+  @types.each { |type| type.delete! }
+end
+
+Given /^there are materials in material$/ do
+  @crmaterial = Material.create!(
+    :name => 'impor2011',
+    :description => 'suela traida desde japon ',
+    :material_type => 'suela'
+  )
+  @crmaterial.save
+end
+
+Given /^there are no materials in material$/ do
+  @types = Material.all
+  @types.each { |type| type.delete! }
+end
 
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
